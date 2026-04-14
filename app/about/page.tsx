@@ -169,7 +169,7 @@ export default function AboutPage() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full bg-brand-gradient text-white font-semibold rounded-full py-3 text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="w-full bg-brand-gradient text-gray-400 font-semibold rounded-full py-3 text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
               >
                 {status === 'sending' ? 'Sending...' : 'Send Message'}
               </button>
