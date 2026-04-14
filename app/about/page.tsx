@@ -70,7 +70,7 @@ export default function AboutPage() {
         </div>
 
         {/* Mission */}
-        <div className="bg-brand-gradient rounded-xl p-8 text-white mb-10 text-center">
+        <div className="bg-brand-gradient rounded-xl p-8 text-gray-500 mb-10 text-center">
           <h2 className="font-display text-xl font-bold mb-3">Our Mission</h2>
           <p className="opacity-90 leading-relaxed max-w-xl mx-auto">
             To help everyday people and small business owners understand, explore, and confidently
@@ -169,7 +169,7 @@ export default function AboutPage() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full bg-brand-gradient text-white font-semibold rounded-full py-3 text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="w-full bg-brand-gradient text-gray-500 font-semibold rounded-full py-3 text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
               >
                 {status === 'sending' ? 'Sending...' : 'Send Message'}
               </button>

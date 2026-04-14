@@ -134,7 +134,7 @@ export default function HowItWorksPage() {
         </div>
 
         {/* CTA */}
-        <div className="bg-brand-gradient rounded-xl p-8 text-white text-center">
+        <div className="bg-brand-gradient rounded-xl p-8 text-gray-500 text-center">
           <h2 className="font-display text-xl font-bold mb-2">See it for yourself</h2>
           <p className="opacity-90 mb-5 text-sm">
             The best way to understand AI is to try it. Pick a guided prompt and send your first message.

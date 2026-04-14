@@ -93,7 +93,7 @@ export default function WhatIsAIPage() {
         </div>
 
         {/* Next step CTA */}
-        <div className="mt-12 bg-brand-gradient rounded-xl p-8 text-white text-center">
+        <div className="mt-12 bg-brand-gradient rounded-xl p-8 text-gray-500 text-center">
           <h2 className="font-display text-xl font-bold mb-2">Ready to go deeper?</h2>
           <p className="opacity-90 mb-5 text-sm">
             Now that you know what AI is, find out how it actually works — and how small businesses are using it today.
@@ -107,7 +107,7 @@ export default function WhatIsAIPage() {
             </Link>
             <Link
               href="/try-ai"
-              className="border border-white/50 bg-white/10 text-white font-semibold rounded-full px-6 py-2.5 hover:bg-white/20 transition-colors text-sm"
+              className="border border-white/100 bg-white/10 text-gray-500 font-semibold rounded-full px-6 py-2.5 hover:bg-white/20 transition-colors text-sm"
             >
               Try AI Now
             </Link>
