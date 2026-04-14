@@ -72,67 +72,80 @@ const useCases = [
 
 export default function HowItWorksPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <p className="text-xs font-semibold text-brand-purple tracking-widest uppercase mb-3">
-          Under the Hood
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-          How AI Works
-        </h1>
-        <p className="text-gray-500 text-lg max-w-xl mx-auto">
-          No technical jargon — just a clear picture of what's actually happening when you talk to AI.
-        </p>
-      </div>
+    <div className="relative overflow-hidden" style={{ background: 'linear-gradient(150deg, rgba(255,179,107,0.18) 0%, #faf7f2 45%, rgba(72,185,187,0.16) 100%)' }}>
+      {/* Decorative blobs */}
+      <div className="absolute -top-24 -left-24 w-[460px] h-[460px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(255,179,107,0.24)' }} />
+      <div className="absolute top-1/3 -right-32 w-[400px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(72,185,187,0.26)' }} />
+      <div className="absolute -bottom-24 left-1/3 w-[340px] h-[340px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(140,197,184,0.2)' }} />
 
-      {/* Step-by-step */}
-      <div className="space-y-6 mb-14">
-        {steps.map(({ number, heading, body }) => (
-          <div key={number} className="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-purple-50 flex gap-5">
-            <div className="text-3xl font-bold text-purple-200 shrink-0 leading-none pt-1">
-              {number}
-            </div>
-            <div>
-              <h2 className="text-lg font-semibold text-brand-navy mb-2">{heading}</h2>
-              <p className="text-gray-600 leading-relaxed whitespace-pre-line text-sm">{body}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <div className="relative max-w-3xl mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
+            Under the Hood
+          </p>
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-brand-navy mb-4">
+            How AI Works
+          </h1>
+          <p className="text-gray-500 text-lg max-w-xl mx-auto">
+            No technical jargon — just a clear picture of what's actually happening when you talk to AI.
+          </p>
+        </div>
 
-      {/* Small business use cases */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold text-brand-navy text-center mb-2">
-          How small businesses use AI
-        </h2>
-        <p className="text-gray-500 text-center text-sm mb-8">
-          Real things real business owners do with AI every day.
-        </p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {useCases.map(({ emoji, title, detail }) => (
-            <div key={title} className="bg-white rounded-xl p-5 shadow-sm border border-purple-50 flex gap-4">
-              <span className="text-2xl shrink-0">{emoji}</span>
+        {/* Step-by-step */}
+        <div className="space-y-5 mb-14">
+          {steps.map(({ number, heading, body }) => (
+            <div
+              key={number}
+              className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-6 md:p-8 shadow-md flex gap-5"
+            >
+              <div className="font-display text-3xl font-bold text-brand-purple/20 shrink-0 leading-none pt-1">
+                {number}
+              </div>
               <div>
-                <h3 className="font-semibold text-brand-navy text-sm mb-1">{title}</h3>
-                <p className="text-gray-500 text-xs leading-relaxed">{detail}</p>
+                <h2 className="font-display text-lg font-semibold text-brand-navy mb-2">{heading}</h2>
+                <p className="text-gray-600 leading-relaxed whitespace-pre-line text-sm">{body}</p>
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* CTA */}
-      <div className="bg-brand-gradient rounded-xl p-8 text-white text-center">
-        <h2 className="text-xl font-bold mb-2">See it for yourself</h2>
-        <p className="opacity-90 mb-5 text-sm">
-          The best way to understand AI is to try it. Pick a guided prompt and send your first message.
-        </p>
-        <Link
-          href="/try-ai"
-          className="inline-block bg-white text-brand-purple font-semibold rounded-lg px-8 py-2.5 hover:opacity-90 transition-opacity text-sm"
-        >
-          Try AI Now →
-        </Link>
+        {/* Small business use cases */}
+        <div className="mb-12">
+          <h2 className="font-display text-2xl font-bold text-brand-navy text-center mb-2">
+            How small businesses use AI
+          </h2>
+          <p className="text-gray-500 text-center text-sm mb-8">
+            Real things real business owners do with AI every day.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {useCases.map(({ emoji, title, detail }) => (
+              <div
+                key={title}
+                className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-5 shadow-md flex gap-4"
+              >
+                <span className="text-2xl shrink-0">{emoji}</span>
+                <div>
+                  <h3 className="font-semibold text-brand-navy text-sm mb-1">{title}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="bg-brand-gradient rounded-xl p-8 text-white text-center">
+          <h2 className="font-display text-xl font-bold mb-2">See it for yourself</h2>
+          <p className="opacity-90 mb-5 text-sm">
+            The best way to understand AI is to try it. Pick a guided prompt and send your first message.
+          </p>
+          <Link
+            href="/try-ai"
+            className="inline-block bg-white text-brand-purple font-semibold rounded-full px-8 py-2.5 hover:opacity-90 transition-opacity text-sm"
+          >
+            Try AI Now →
+          </Link>
+        </div>
       </div>
     </div>
   )

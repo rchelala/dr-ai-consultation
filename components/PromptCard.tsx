@@ -9,7 +9,7 @@ export default function PromptCard({ prompt, onSelect }: PromptCardProps) {
   return (
     <button
       onClick={() => onSelect(prompt.text)}
-      className="text-left bg-white border border-purple-100 rounded-xl p-4 hover:border-brand-purple hover:shadow-md transition-all group w-full"
+      className="text-left bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-4 hover:bg-white/55 hover:shadow-md transition-all group w-full"
     >
       <p className="text-xs font-semibold text-brand-pink mb-1 tracking-wide">
         {prompt.category}

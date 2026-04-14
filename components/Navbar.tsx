@@ -16,25 +16,25 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-white border-b border-purple-100 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+    <nav className="bg-brand-lavender border-b border-brand-navy/10 sticky top-0 z-50">
+      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link
           href="/"
-          className="font-bold text-lg bg-brand-gradient bg-clip-text text-transparent"
+          className="font-display text-xl italic font-bold text-brand-navy hover:text-brand-purple transition-colors"
         >
           D & R AI Consultation
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex gap-6 text-sm">
+        <div className="hidden md:flex gap-8 text-sm">
           {links.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`transition-colors ${
+              className={`transition-colors font-medium ${
                 pathname === href
-                  ? 'text-brand-purple font-semibold'
-                  : 'text-gray-600 hover:text-brand-purple'
+                  ? 'text-brand-purple'
+                  : 'text-brand-navy/60 hover:text-brand-navy'
               }`}
             >
               {label}
@@ -44,23 +44,31 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-gray-600 hover:text-brand-purple text-xl"
+          className="md:hidden text-brand-navy/60 hover:text-brand-navy transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          {menuOpen ? '✕' : '☰'}
+          {menuOpen ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
       </div>
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="md:hidden border-t border-purple-50 px-4 py-3 flex flex-col gap-4 bg-white">
+        <div className="md:hidden border-t border-brand-navy/10 px-6 py-4 flex flex-col gap-4 bg-brand-lavender">
           {links.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm ${
-                pathname === href ? 'text-brand-purple font-semibold' : 'text-gray-600'
+              className={`text-sm font-medium ${
+                pathname === href ? 'text-brand-purple' : 'text-brand-navy/60'
               }`}
               onClick={() => setMenuOpen(false)}
             >

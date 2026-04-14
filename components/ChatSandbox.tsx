@@ -73,7 +73,7 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
   }
 
   return (
-    <div className="flex flex-col h-[520px] bg-white rounded-xl border border-purple-100 shadow-sm overflow-hidden">
+    <div className="flex flex-col h-[520px] bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl shadow-md overflow-hidden">
       {/* Messages area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {messages.length === 0 && (
@@ -107,7 +107,7 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
       </div>
 
       {/* Input area */}
-      <div className="border-t border-purple-50 p-3 flex gap-2 items-end bg-white">
+      <div className="border-t border-white/60 p-3 flex gap-2 items-end bg-white/40 backdrop-blur-sm">
         <textarea
           className="flex-1 resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple min-h-[44px] max-h-[120px]"
           placeholder="Ask anything or edit the prompt above... (Enter to send)"
