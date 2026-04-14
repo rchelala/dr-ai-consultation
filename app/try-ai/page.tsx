@@ -16,7 +16,7 @@ export default function TryAIPage() {
       <div className="absolute -bottom-24 right-1/3 w-[340px] h-[340px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(140,197,184,0.2)' }} />
 
       <div className="relative max-w-4xl mx-auto px-4 pt-20 pb-12">
-        <div className="text-center mb-10">
+        <div className="text-center mb-10 animate-fade-up">
           <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
             Hands-On Practice
           </p>

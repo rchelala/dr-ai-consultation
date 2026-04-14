@@ -63,7 +63,7 @@ export default function WhatIsAIPage() {
       <div className="absolute -bottom-24 right-1/3 w-[340px] h-[340px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(140,197,184,0.2)' }} />
 
       <div className="relative max-w-3xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-up">
           <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
             The Basics
           </p>
@@ -76,10 +76,11 @@ export default function WhatIsAIPage() {
         </div>
 
         <div className="space-y-6">
-          {sections.map(({ emoji, heading, body }) => (
+          {sections.map(({ emoji, heading, body }, i) => (
             <div
               key={heading}
-              className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-6 md:p-8 shadow-md"
+              className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-6 md:p-8 shadow-md hover:bg-white/60 hover:shadow-lg transition-all animate-fade-up"
+              style={{ animationDelay: `${i * 80 + 100}ms` }}
             >
               <div className="flex items-start gap-4">
                 <span className="text-3xl mt-1 shrink-0">{emoji}</span>
@@ -93,7 +94,7 @@ export default function WhatIsAIPage() {
         </div>
 
         {/* Next step CTA */}
-        <div className="mt-12 bg-brand-gradient rounded-xl p-8 text-gray-500 text-center">
+        <div className="mt-12 bg-brand-gradient rounded-xl p-8 text-gray-400 text-center">
           <h2 className="font-display text-xl font-bold mb-2">Ready to go deeper?</h2>
           <p className="opacity-90 mb-5 text-sm">
             Now that you know what AI is, find out how it actually works — and how small businesses are using it today.
@@ -107,7 +108,7 @@ export default function WhatIsAIPage() {
             </Link>
             <Link
               href="/try-ai"
-              className="border border-white/100 bg-white/10 text-gray-500 font-semibold rounded-full px-6 py-2.5 hover:bg-white/20 transition-colors text-sm"
+              className="border border-white/100 bg-white/10 text-gray-400 font-semibold rounded-full px-6 py-2.5 hover:bg-white/20 transition-colors text-sm"
             >
               Try AI Now
             </Link>

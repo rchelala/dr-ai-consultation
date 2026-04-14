@@ -57,7 +57,7 @@ export default function AboutPage() {
 
       <div className="relative max-w-3xl mx-auto px-4 pt-20 pb-12">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-up">
           <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
             Who We Are
           </p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
         </div>
 
         {/* Mission */}
-        <div className="bg-brand-gradient rounded-xl p-8 text-gray-500 mb-10 text-center">
+        <div className="bg-brand-gradient rounded-xl p-8 text-gray-400 mb-10 text-center animate-fade-up" style={{ animationDelay: '100ms' }}>
           <h2 className="font-display text-xl font-bold mb-3">Our Mission</h2>
           <p className="opacity-90 leading-relaxed max-w-xl mx-auto">
             To help everyday people and small business owners understand, explore, and confidently
@@ -169,7 +169,7 @@ export default function AboutPage() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full bg-brand-gradient text-gray-500 font-semibold rounded-full py-3 text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="w-full bg-brand-gradient text-white font-semibold rounded-full py-3 text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
               >
                 {status === 'sending' ? 'Sending...' : 'Send Message'}
               </button>

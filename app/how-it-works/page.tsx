@@ -79,7 +79,7 @@ export default function HowItWorksPage() {
       <div className="absolute -bottom-24 left-1/3 w-[340px] h-[340px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(140,197,184,0.2)' }} />
 
       <div className="relative max-w-3xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-up">
           <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
             Under the Hood
           </p>
@@ -93,10 +93,11 @@ export default function HowItWorksPage() {
 
         {/* Step-by-step */}
         <div className="space-y-5 mb-14">
-          {steps.map(({ number, heading, body }) => (
+          {steps.map(({ number, heading, body }, i) => (
             <div
               key={number}
-              className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-6 md:p-8 shadow-md flex gap-5"
+              className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-6 md:p-8 shadow-md flex gap-5 hover:bg-white/60 hover:shadow-lg transition-all animate-fade-up"
+              style={{ animationDelay: `${i * 80 + 100}ms` }}
             >
               <div className="font-display text-3xl font-bold text-brand-purple/20 shrink-0 leading-none pt-1">
                 {number}
@@ -121,7 +122,7 @@ export default function HowItWorksPage() {
             {useCases.map(({ emoji, title, detail }) => (
               <div
                 key={title}
-                className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-5 shadow-md flex gap-4"
+                className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-5 shadow-md flex gap-4 hover:bg-white/60 hover:shadow-lg transition-all"
               >
                 <span className="text-2xl shrink-0">{emoji}</span>
                 <div>
@@ -134,7 +135,7 @@ export default function HowItWorksPage() {
         </div>
 
         {/* CTA */}
-        <div className="bg-brand-gradient rounded-xl p-8 text-gray-500 text-center">
+        <div className="bg-brand-gradient rounded-xl p-8 text-gray-400 text-center">
           <h2 className="font-display text-xl font-bold mb-2">See it for yourself</h2>
           <p className="opacity-90 mb-5 text-sm">
             The best way to understand AI is to try it. Pick a guided prompt and send your first message.

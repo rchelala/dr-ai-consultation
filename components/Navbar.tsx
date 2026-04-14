@@ -61,8 +61,12 @@ export default function Navbar() {
       </div>
 
       {/* Mobile dropdown */}
-      {menuOpen && (
-        <div className="md:hidden border-t border-brand-navy/10 px-6 py-4 flex flex-col gap-4 bg-brand-lavender">
+      <div
+        className={`md:hidden border-brand-navy/10 bg-brand-lavender overflow-hidden transition-all duration-200 ease-in-out ${
+          menuOpen ? 'max-h-64 border-t' : 'max-h-0'
+        }`}
+      >
+        <div className="px-6 py-4 flex flex-col gap-4">
           {links.map(({ href, label }) => (
             <Link
               key={href}
@@ -76,7 +80,7 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-      )}
+      </div>
     </nav>
   )
 }
