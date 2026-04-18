@@ -18,13 +18,13 @@ export default function TryAIPage() {
       <div className="relative max-w-4xl mx-auto px-4 pt-20 pb-12">
         <div className="text-center mb-10 animate-fade-up">
           <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
-            Hands-On Practice
+            Live Demo
           </p>
           <h1 className="font-display text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-            Try AI for Yourself
+            Try AI for Your Business
           </h1>
           <p className="text-gray-500 text-lg max-w-xl mx-auto">
-            No experience needed. Click a prompt below to get started — or type your own question.
+            See exactly what AI can do — right now. Pick a real business prompt below, or type your own.
           </p>
         </div>
 

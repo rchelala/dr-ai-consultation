@@ -97,7 +97,7 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
             <div
               className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                 msg.role === 'user'
-                  ? 'bg-brand-gradient text-white rounded-br-sm'
+                  ? 'bg-brand-gradient text-gray-400 rounded-br-sm'
                   : 'bg-gray-100 text-gray-800 rounded-bl-sm'
               }`}
             >
@@ -129,7 +129,7 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
         <button
           onClick={sendMessage}
           disabled={isLoading || !input.trim()}
-          className="bg-brand-gradient text-white rounded-lg px-4 py-2.5 text-sm font-semibold disabled:opacity-40 hover:opacity-90 transition-opacity whitespace-nowrap"
+          className="bg-brand-gradient text-gray-400 rounded-lg px-4 py-2.5 text-sm font-semibold disabled:opacity-40 hover:opacity-90 transition-opacity whitespace-nowrap"
         >
           {isLoading ? 'Sending...' : 'Send →'}
         </button>
