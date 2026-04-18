@@ -16,10 +16,18 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
   const [input, setInput] = useState(initialMessage)
   const [isLoading, setIsLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     setInput(initialMessage)
   }, [initialMessage])
+
+  useEffect(() => {
+    const el = textareaRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = Math.min(el.scrollHeight, 200) + 'px'
+  }, [input])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -109,7 +117,8 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
       {/* Input area */}
       <div className="border-t border-white/60 p-3 flex gap-2 items-end bg-white/40 backdrop-blur-sm">
         <textarea
-          className="flex-1 resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple min-h-[44px] max-h-[120px]"
+          ref={textareaRef}
+          className="flex-1 resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple min-h-[44px] overflow-y-auto"
           placeholder="Ask anything or edit the prompt above... (Enter to send)"
           value={input}
           onChange={e => setInput(e.target.value)}

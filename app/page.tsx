@@ -28,28 +28,28 @@ export default function HomePage() {
               },
               {
                 number: '02',
-                title: 'How it Works',
-                description:
-                  'See how AI thinks, learns, and can help your business save time and serve customers better.',
-                href: '/how-it-works',
-              },
-              {
-                number: '03',
                 title: 'Try AI Live',
                 description:
                   'Practice with real AI using guided prompts. No experience needed — just click and explore.',
                 href: '/try-ai',
               },
+              {
+                number: '03',
+                title: 'About Us',
+                description:
+                  'Meet the team behind D & R AI Consultation and learn why we built this for you.',
+                href: '/about',
+              },
             ].map(({ number, title, description, href }) => (
               <Link
                 key={href}
                 href={href}
-                className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-2xl p-8 shadow-md hover:bg-white/75 hover:shadow-lg transition-all group"
+                className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-2xl p-8 shadow-md hover:bg-white/75 hover:shadow-xl hover:-translate-y-2 transition-all duration-200 group"
               >
                 <div className="font-display text-5xl font-bold text-brand-purple/15 mb-5 group-hover:text-brand-purple/35 transition-colors leading-none">
                   {number}
                 </div>
-                <h3 className="font-display text-xl font-semibold text-brand-navy mb-3 group-hover:text-brand-purple transition-colors">
+                <h3 className="font-display text-xl font-semibold text-brand-navy mb-3 group-hover:text-brand-purple group-hover:underline transition-colors">
                   {title}
                 </h3>
                 <p className="text-sm text-gray-500 leading-relaxed mb-5">{description}</p>
