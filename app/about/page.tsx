@@ -78,6 +78,42 @@ export default function AboutPage() {
           </p>
         </div>
 
+        {/* Why Work With Us */}
+        <div className="mb-14 animate-fade-up" style={{ animationDelay: '150ms' }}>
+          <h2 className="font-display text-2xl font-bold text-brand-navy text-center mb-2">Why Work With Us</h2>
+          <p className="text-gray-500 text-sm text-center mb-8 max-w-md mx-auto">
+            We&apos;re not just AI enthusiasts — we bring real operational and data experience that most consultants don&apos;t have.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {[
+              {
+                icon: '🏥',
+                title: 'Healthcare Data Background',
+                body: 'Robert has worked extensively with healthcare data and operational workflows — giving us a deep understanding of how real businesses actually run.',
+              },
+              {
+                icon: '📊',
+                title: 'SQL & Analytics Expertise',
+                body: "We don't just automate tasks — we measure results. Our analytics background means you always know what's working and what to improve.",
+              },
+              {
+                icon: '🛠️',
+                title: 'Real Builders',
+                body: "We've shipped real products: apps, websites, and automation workflows. When we commit to building something, we deliver it.",
+              },
+            ].map(({ icon, title, body }) => (
+              <div
+                key={title}
+                className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-6 shadow-sm text-center"
+              >
+                <div className="text-3xl mb-3">{icon}</div>
+                <h3 className="font-display text-base font-semibold text-brand-navy mb-2">{title}</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Team */}
         <div className="mb-14">
           <h2 className="font-display text-2xl font-bold text-brand-navy text-center mb-8">Meet the Team</h2>
@@ -106,9 +142,9 @@ export default function AboutPage() {
 
         {/* Contact form */}
         <div className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-xl p-8 shadow-md">
-          <h2 className="font-display text-2xl font-bold text-brand-navy mb-2">Get in Touch</h2>
+          <h2 className="font-display text-2xl font-bold text-brand-navy mb-2">Book a Free AI Strategy Call</h2>
           <p className="text-gray-500 text-sm mb-6">
-            Have a question or want to learn more about working with us? Send us a message.
+            Tell us about your business and we&apos;ll reach out to schedule a free 30-minute strategy call — no commitment required.
           </p>
 
           {status === 'sent' ? (
