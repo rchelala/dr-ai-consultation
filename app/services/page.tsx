@@ -78,13 +78,13 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               href="/quiz"
-              className="inline-block bg-brand-gradient text-white font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity shadow-md"
+              className="inline-block bg-brand-gradient text-gray-400 font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity shadow-md border-2 border-transparent hover:border-brand-purple hover:text-brand-purple transition-colors"
             >
               Take the Free Quiz First
             </Link>
             <Link
               href="/about"
-              className="inline-block border-2 border-brand-navy/20 text-brand-navy font-semibold rounded-full px-8 py-3.5 hover:border-brand-purple hover:text-brand-purple transition-colors"
+              className="inline-block bg-brand-gradient text-gray-400 font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity shadow-md border-2 border-transparent hover:border-brand-purple hover:text-brand-purple transition-colors"
             >
               Contact Us
             </Link>
@@ -199,7 +199,7 @@ export default function ServicesPage() {
                 a: "Absolutely. Most clients start with the Starter Audit to understand their opportunities, then move to Implementation once they have a clear plan.",
               },
             ].map(({ q, a }) => (
-              <div key={q} className="bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl p-6">
+              <div key={q} className="bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
                 <h3 className="font-display text-base font-semibold text-brand-navy mb-2">{q}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{a}</p>
               </div>
@@ -210,7 +210,7 @@ export default function ServicesPage() {
             <p className="text-gray-500 text-sm mb-4">Still have questions?</p>
             <Link
               href="/about"
-              className="inline-block bg-brand-gradient text-white font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity"
+              className="inline-block bg-brand-gradient text-gray-400 font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity border-2 border-transparent hover:border-brand-purple hover:text-brand-purple transition-colors shadow-md"
             >
               Contact Us
             </Link>

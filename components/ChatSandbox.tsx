@@ -16,10 +16,18 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
   const [input, setInput] = useState(initialMessage)
   const [isLoading, setIsLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     setInput(initialMessage)
   }, [initialMessage])
+
+  useEffect(() => {
+    const el = textareaRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = Math.min(el.scrollHeight, 200) + 'px'
+  }, [input])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -89,7 +97,7 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
             <div
               className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                 msg.role === 'user'
-                  ? 'bg-brand-gradient text-white rounded-br-sm'
+                  ? 'bg-brand-gradient text-gray-400 rounded-br-sm'
                   : 'bg-gray-100 text-gray-800 rounded-bl-sm'
               }`}
             >
@@ -109,7 +117,8 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
       {/* Input area */}
       <div className="border-t border-white/60 p-3 flex gap-2 items-end bg-white/40 backdrop-blur-sm">
         <textarea
-          className="flex-1 resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple min-h-[44px] max-h-[120px]"
+          ref={textareaRef}
+          className="flex-1 resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple min-h-[44px] overflow-y-auto"
           placeholder="Ask anything or edit the prompt above... (Enter to send)"
           value={input}
           onChange={e => setInput(e.target.value)}
@@ -120,7 +129,7 @@ export default function ChatSandbox({ initialMessage = '' }: ChatSandboxProps) {
         <button
           onClick={sendMessage}
           disabled={isLoading || !input.trim()}
-          className="bg-brand-gradient text-white rounded-lg px-4 py-2.5 text-sm font-semibold disabled:opacity-40 hover:opacity-90 transition-opacity whitespace-nowrap"
+          className="bg-brand-gradient text-gray-400 rounded-lg px-4 py-2.5 text-sm font-semibold disabled:opacity-40 hover:opacity-90 transition-opacity whitespace-nowrap"
         >
           {isLoading ? 'Sending...' : 'Send →'}
         </button>

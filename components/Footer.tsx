@@ -2,7 +2,6 @@ import Link from 'next/link'
 
 const links = [
   { href: '/what-is-ai', label: 'What is AI?' },
-  { href: '/how-it-works', label: 'How it Works' },
   { href: '/try-ai', label: 'Try AI' },
   { href: '/services', label: 'Services' },
   { href: '/quiz', label: 'Take the Quiz' },

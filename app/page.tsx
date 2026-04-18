@@ -6,7 +6,7 @@ export default function HomePage() {
     <div>
       {/* Hero */}
       <HeroSection
-        title="We help your business save 10+ hours a week"
+        title="We help your business save hours a week"
         highlightText="using AI."
         description="D & R AI Consultation delivers practical, no-hype AI solutions for small businesses — from automating repetitive tasks to responding to customers 24/7."
         buttonText="See Our Services"
@@ -58,10 +58,10 @@ export default function HomePage() {
             ].map(({ icon, headline, body }) => (
               <div
                 key={headline}
-                className="bg-white/50 backdrop-blur-xl border border-white/70 rounded-2xl p-7 shadow-sm animate-fade-up"
+                className="bg-white/50 backdrop-blur-xl border border-white/70 rounded-2xl p-7 shadow-sm animate-fade-up hover:shadow-xl hover:-translate-y-2 transition-all duration-200 group"
               >
                 <div className="text-3xl mb-4">{icon}</div>
-                <h3 className="font-display text-lg font-semibold text-brand-navy mb-2">{headline}</h3>
+                <h3 className="font-display text-lg font-semibold text-brand-navy mb-2 group-hover:underline">{headline}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{body}</p>
               </div>
             ))}
@@ -199,7 +199,7 @@ export default function HomePage() {
           <div className="text-center">
             <Link
               href="/services"
-              className="inline-block bg-brand-gradient text-white font-semibold rounded-full px-10 py-4 hover:opacity-90 transition-opacity shadow-md"
+              className="inline-block bg-brand-gradient text-black-400 font-semibold rounded-full px-10 py-4 hover:opacity-90 transition-opacity shadow-md"
             >
               View All Packages →
             </Link>

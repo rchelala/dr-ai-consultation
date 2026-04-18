@@ -130,7 +130,7 @@ function getResult(score: number, answers: Record<string, number>): Result {
 export default function QuizPage() {
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
-  const [selected, setSelected] = useState<number | null>(null)
+  const [selected, setSelected] = useState<number | null>(null) // index, not score
   const [showResult, setShowResult] = useState(false)
 
   const q = questions[currentQ]
@@ -138,13 +138,13 @@ export default function QuizPage() {
   const result = getResult(totalScore, answers)
   const progress = ((currentQ) / questions.length) * 100
 
-  function handleSelect(score: number) {
-    setSelected(score)
+  function handleSelect(index: number) {
+    setSelected(index)
   }
 
   function handleNext() {
     if (selected === null) return
-    const newAnswers = { ...answers, [q.id]: selected }
+    const newAnswers = { ...answers, [q.id]: q.options[selected].score }
     setAnswers(newAnswers)
     setSelected(null)
 
@@ -189,7 +189,7 @@ export default function QuizPage() {
               <div className="space-y-3">
                 <Link
                   href="/about"
-                  className="block text-center bg-brand-gradient text-white font-semibold rounded-full py-4 hover:opacity-90 transition-opacity shadow-md"
+                  className="block text-center bg-brand-gradient text-green-600 font-semibold rounded-full py-4 hover:opacity-90 transition-opacity shadow-md"
                 >
                   Book a Free AI Strategy Call
                 </Link>
@@ -248,18 +248,18 @@ export default function QuizPage() {
           </h2>
 
           <div className="space-y-3 mb-8">
-            {q.options.map(({ label, score }) => (
+            {q.options.map(({ label }, index) => (
               <button
                 key={label}
-                onClick={() => handleSelect(score)}
+                onClick={() => handleSelect(index)}
                 className={`w-full text-left px-5 py-4 rounded-xl border-2 text-sm font-medium transition-all ${
-                  selected === score
+                  selected === index
                     ? 'border-brand-purple bg-brand-purple/5 text-brand-navy'
                     : 'border-brand-navy/10 bg-white/50 text-gray-600 hover:border-brand-purple/40 hover:bg-white/80'
                 }`}
               >
                 <span className={`inline-block w-5 h-5 rounded-full border-2 mr-3 align-middle transition-all flex-shrink-0 ${
-                  selected === score ? 'border-brand-purple bg-brand-purple' : 'border-gray-300'
+                  selected === index ? 'border-brand-purple bg-brand-purple' : 'border-gray-300'
                 }`} />
                 {label}
               </button>
@@ -269,7 +269,7 @@ export default function QuizPage() {
           <button
             onClick={handleNext}
             disabled={selected === null}
-            className="w-full bg-brand-gradient text-white font-semibold rounded-full py-4 hover:opacity-90 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
+            className="w-full bg-brand-gradient text-gray-400 font-semibold rounded-full py-4 hover:opacity-90 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
           >
             {currentQ + 1 === questions.length ? 'See My Results' : 'Next Question →'}
           </button>
