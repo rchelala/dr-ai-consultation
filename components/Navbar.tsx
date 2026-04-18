@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import Icon from '@/components/Icon'
 
 const links = [
   { href: '/what-is-ai', label: 'What is AI?' },
@@ -11,88 +12,101 @@ const links = [
   { href: '/about', label: 'About' },
 ]
 
-const quizLink = { href: '/quiz', label: 'Take the Quiz' }
-
 export default function Navbar() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-brand-lavender border-b border-brand-navy/10 sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-xl italic font-bold text-brand-navy hover:text-brand-purple transition-colors"
-        >
-          D & R AI Consultation
+    <nav style={{
+      position: 'sticky', top: 0, zIndex: 90,
+      background: 'rgba(250,247,242,0.92)',
+      backdropFilter: 'blur(14px)',
+      borderBottom: '1px solid rgba(28,35,48,0.06)',
+    }}>
+      <div style={{
+        maxWidth: 'var(--container)', margin: '0 auto',
+        padding: '16px 24px',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        gap: 24,
+      }}>
+        {/* Brand */}
+        <Link href="/" style={{
+          display: 'inline-flex', alignItems: 'baseline', gap: 8,
+          fontFamily: 'var(--font-display)',
+          color: 'var(--ink-100)',
+          textDecoration: 'none',
+        }}>
+          <span style={{ fontSize: 22, fontWeight: 700, fontStyle: 'italic', letterSpacing: '-0.02em' }}>
+            D<span style={{ color: 'var(--brand-teal)', padding: '0 2px' }}>&amp;</span>R
+          </span>
+          <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: '-0.01em' }}>AI Consultation</span>
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex gap-8 text-sm items-center">
+        <div className="hidden md:flex" style={{ alignItems: 'center', gap: 28 }}>
           {links.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`transition-colors font-medium ${
-                pathname === href
-                  ? 'text-brand-purple'
-                  : 'text-brand-navy/60 hover:text-brand-navy'
-              }`}
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 14, fontWeight: 500,
+                color: pathname === href ? 'var(--brand-teal)' : 'var(--ink-60)',
+                textDecoration: 'none',
+                transition: 'color var(--dur-fast) var(--ease-out)',
+              }}
             >
               {label}
             </Link>
           ))}
-          <Link
-            href={quizLink.href}
-            className="bg-brand-pink text-white text-sm font-medium px-4 py-1.5 rounded-full hover:opacity-90 transition-opacity"
-          >
-            {quizLink.label}
+          <Link href="/quiz" className="btn btn-primary btn--sm">
+            Take the Quiz
           </Link>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-brand-navy/60 hover:text-brand-navy transition-colors"
+          className="md:hidden"
+          style={{ background: 'transparent', border: 0, color: 'var(--ink-60)', padding: 8 }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          {menuOpen ? (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
+          <Icon name={menuOpen ? 'x' : 'menu'} size={22} />
         </button>
       </div>
 
       {/* Mobile dropdown */}
       <div
-        className={`md:hidden border-brand-navy/10 bg-brand-lavender overflow-hidden transition-all duration-200 ease-in-out ${
-          menuOpen ? 'max-h-64 border-t' : 'max-h-0'
-        }`}
+        className="md:hidden"
+        style={{
+          overflow: 'hidden',
+          maxHeight: menuOpen ? 260 : 0,
+          transition: 'max-height 200ms ease-in-out',
+          borderTop: menuOpen ? '1px solid rgba(28,35,48,0.06)' : 'none',
+        }}
       >
-        <div className="px-6 py-4 flex flex-col gap-4">
+        <div style={{ padding: '16px 24px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           {links.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm font-medium ${
-                pathname === href ? 'text-brand-purple' : 'text-brand-navy/60'
-              }`}
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 14, fontWeight: 500,
+                color: pathname === href ? 'var(--brand-teal)' : 'var(--ink-60)',
+                textDecoration: 'none',
+              }}
               onClick={() => setMenuOpen(false)}
             >
               {label}
             </Link>
           ))}
           <Link
-            href={quizLink.href}
-            className="text-sm font-medium text-brand-pink"
+            href="/quiz"
+            style={{ fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: 600, color: 'var(--brand-peach-2)' }}
             onClick={() => setMenuOpen(false)}
           >
-            {quizLink.label}
+            Take the Quiz
           </Link>
         </div>
       </div>

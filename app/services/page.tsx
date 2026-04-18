@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Icon from '@/components/Icon'
 
 const tiers = [
   {
@@ -52,95 +53,58 @@ const tiers = [
 ]
 
 const included = [
-  { icon: '📞', title: 'Discovery Call', body: 'Every engagement starts with a free 30-minute call to understand your business before we recommend anything.' },
-  { icon: '📋', title: 'Custom Recommendations', body: "No generic playbooks. Every recommendation is tailored to your specific business, industry, and goals." },
-  { icon: '🤝', title: 'Follow-Up Support', body: "We don't disappear after delivery. Every package includes follow-up to make sure everything works as promised." },
+  { icon: 'phone' as const, title: 'Discovery Call', body: 'Every engagement starts with a free 30-minute call to understand your business before we recommend anything.' },
+  { icon: 'clipboard' as const, title: 'Custom Recommendations', body: 'No generic playbooks. Every recommendation is tailored to your specific business, industry, and goals.' },
+  { icon: 'users' as const, title: 'Follow-Up Support', body: "We don't disappear after delivery. Every package includes follow-up to make sure everything works as promised." },
 ]
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-brand-lavender">
+    <div>
       {/* Header */}
-      <section className="relative overflow-hidden py-24 px-6" style={{ background: 'linear-gradient(135deg, rgba(72,185,187,0.15) 0%, #faf7f2 50%, rgba(255,179,107,0.12) 100%)' }}>
-        <div className="absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(72,185,187,0.2)' }} />
-        <div className="absolute -bottom-20 -right-20 w-[360px] h-[360px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(255,179,107,0.18)' }} />
-        <div className="relative max-w-3xl mx-auto text-center">
-          <p className="text-xs font-semibold text-brand-purple/50 tracking-[0.2em] uppercase mb-4">
-            Our Services
-          </p>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-brand-navy mb-5 leading-tight">
+      <section className="section section--wash" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="blob blob-teal" style={{ width: 400, height: 400, top: -100, left: -80 }} />
+        <div className="blob blob-peach" style={{ width: 360, height: 360, bottom: -100, right: -80 }} />
+        <div className="container--narrow" style={{ position: 'relative', textAlign: 'center' }}>
+          <p className="t-eyebrow">Our Services</p>
+          <h1 className="t-h1" style={{ marginTop: 16 }}>
             Simple Packages.<br />
-            <em className="not-italic text-brand-purple">Real Results.</em>
+            <em className="t-accent" style={{ fontStyle: 'normal' }}>Real Results.</em>
           </h1>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="t-lead" style={{ marginTop: 20 }}>
             Every package is built around your business — not a cookie-cutter template. Not sure where to start? Take our free AI quiz.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link
-              href="/quiz"
-              className="inline-block bg-brand-gradient text-gray-400 font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity shadow-md border-2 border-transparent hover:border-brand-purple hover:text-brand-purple transition-colors"
-            >
-              Take the Free Quiz First
-            </Link>
-            <Link
-              href="/about"
-              className="inline-block bg-brand-gradient text-gray-400 font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity shadow-md border-2 border-transparent hover:border-brand-purple hover:text-brand-purple transition-colors"
-            >
-              Contact Us
-            </Link>
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', marginTop: 32, flexWrap: 'wrap' }}>
+            <Link href="/quiz" className="btn btn-primary btn--lg">Take the Free Quiz First</Link>
+            <Link href="/about" className="btn btn-secondary btn--lg">Contact Us</Link>
           </div>
         </div>
       </section>
 
       {/* Pricing Tiers */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6 items-start">
+      <section className="section">
+        <div className="container">
+          <div className="grid-3" style={{ alignItems: 'stretch' }}>
             {tiers.map(({ name, price, priceNote, tagline, highlight, features, cta }) => (
-              <div
-                key={name}
-                className={`rounded-2xl p-8 border transition-all ${
-                  highlight
-                    ? 'bg-brand-navy text-white border-brand-navy shadow-2xl md:-mt-4 md:mb-4'
-                    : 'bg-white/60 backdrop-blur-xl border-white/80 shadow-sm hover:shadow-lg'
-                }`}
-              >
-                {highlight && (
-                  <div className="inline-block text-xs font-semibold text-brand-pink uppercase tracking-wider mb-4 bg-brand-pink/10 px-3 py-1 rounded-full">
-                    Most Popular
-                  </div>
-                )}
-
-                <h2 className={`font-display text-xl font-bold mb-1 ${highlight ? 'text-white' : 'text-brand-navy'}`}>
-                  {name}
-                </h2>
-
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className={`text-3xl font-bold ${highlight ? 'text-white' : 'text-brand-navy'}`}>{price}</span>
-                  <span className={`text-sm ${highlight ? 'text-brand-lavender/50' : 'text-gray-400'}`}>{priceNote}</span>
+              <div key={name}
+                   className={highlight ? 'card card--feature' : 'card card--interactive'}
+                   style={highlight ? { transform: 'translateY(-16px)', marginBottom: 16 } : {}}>
+                {highlight && <div className="badge badge-peach" style={{ marginBottom: 16 }}>Most Popular</div>}
+                <h2 className="t-h4" style={{ color: highlight ? '#fff' : 'var(--ink-100)' }}>{name}</h2>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 8, marginBottom: 8 }}>
+                  <span className="t-h2" style={{ color: highlight ? '#fff' : 'var(--ink-100)', fontSize: 36 }}>{price}</span>
+                  <span className="t-fine" style={{ color: highlight ? 'rgba(250,247,242,0.5)' : 'var(--ink-40)' }}>{priceNote}</span>
                 </div>
-
-                <p className={`text-sm mb-6 leading-relaxed ${highlight ? 'text-brand-lavender/70' : 'text-gray-500'}`}>
-                  {tagline}
-                </p>
-
-                <ul className="space-y-3 mb-8">
+                <p className="t-small" style={{ color: highlight ? 'rgba(250,247,242,0.7)' : 'var(--ink-60)', marginBottom: 24 }}>{tagline}</p>
+                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'grid', gap: 12 }}>
                   {features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm">
-                      <span className={`mt-0.5 flex-shrink-0 ${highlight ? 'text-brand-pink' : 'text-brand-purple'}`}>✓</span>
-                      <span className={highlight ? 'text-brand-lavender/80' : 'text-gray-600'}>{f}</span>
+                    <li key={f} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                      <Icon name="check" size={18} style={{ color: highlight ? 'var(--brand-peach)' : 'var(--brand-teal)', flexShrink: 0, marginTop: 2 }} />
+                      <span className="t-small" style={{ color: highlight ? 'rgba(250,247,242,0.85)' : 'var(--ink-80)' }}>{f}</span>
                     </li>
                   ))}
                 </ul>
-
-                <Link
-                  href="/about"
-                  className={`block text-center font-semibold rounded-full py-3.5 transition-all ${
-                    highlight
-                      ? 'bg-brand-gradient text-white hover:opacity-90'
-                      : 'border-2 border-brand-navy/20 text-brand-navy hover:border-brand-purple hover:text-brand-purple'
-                  }`}
-                >
+                <Link href="/about" className={highlight ? 'btn btn-on-dark' : 'btn btn-secondary'} style={{ width: '100%', display: 'flex' }}>
                   {cta}
                 </Link>
               </div>
@@ -149,24 +113,19 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* What's included in every package */}
-      <section className="bg-brand-navy py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
-              What&apos;s Included in Every Package
-            </h2>
-            <p className="text-brand-lavender/60 text-sm max-w-md mx-auto">
-              Regardless of which package you choose, you always get these with us.
-            </p>
+      {/* What's included */}
+      <section className="section section--dark">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="t-h2" style={{ color: '#fff' }}>What&apos;s Included in Every Package</h2>
+            <p className="t-body" style={{ color: 'rgba(250,247,242,0.65)', marginTop: 12 }}>Regardless of which package you choose, you always get these with us.</p>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid-3">
             {included.map(({ icon, title, body }) => (
-              <div key={title} className="bg-white/5 border border-white/10 rounded-2xl p-7 text-center">
-                <div className="text-3xl mb-4">{icon}</div>
-                <h3 className="font-display text-lg font-semibold text-white mb-2">{title}</h3>
-                <p className="text-sm text-brand-lavender/60 leading-relaxed">{body}</p>
+              <div key={title} className="card card--dark" style={{ padding: 28 }}>
+                <div className="icon-tile icon-tile--dark"><Icon name={icon} /></div>
+                <h3 className="t-h4" style={{ color: '#fff' }}>{title}</h3>
+                <p className="t-small" style={{ marginTop: 10, color: 'rgba(250,247,242,0.65)' }}>{body}</p>
               </div>
             ))}
           </div>
@@ -174,45 +133,28 @@ export default function ServicesPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-6 bg-brand-lavender">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-brand-navy text-center mb-10">
-            Common Questions
-          </h2>
-
-          <div className="space-y-6">
+      <section className="section section--cream">
+        <div className="container--narrow">
+          <div className="section-header">
+            <h2 className="t-h2">Common Questions</h2>
+          </div>
+          <div style={{ display: 'grid', gap: 16 }}>
             {[
-              {
-                q: "Do I need any technical experience?",
-                a: "None at all. We handle everything technical — you just need to tell us about your business and goals.",
-              },
-              {
-                q: "How long does implementation take?",
-                a: "Most implementations are complete within 2–4 weeks depending on complexity. The Starter Audit is delivered within 5 business days.",
-              },
-              {
-                q: "What tools or software do you use?",
-                a: "We work with leading AI platforms and choose the right tools for your specific needs — never locking you into a single vendor.",
-              },
-              {
-                q: "Can I upgrade my package later?",
-                a: "Absolutely. Most clients start with the Starter Audit to understand their opportunities, then move to Implementation once they have a clear plan.",
-              },
+              { q: 'Do I need any technical experience?', a: 'None at all. We handle everything technical — you just need to tell us about your business and goals.' },
+              { q: 'How long does implementation take?', a: 'Most implementations are complete within 2–4 weeks depending on complexity. The Starter Audit is delivered within 5 business days.' },
+              { q: 'What tools or software do you use?', a: 'We work with leading AI platforms and choose the right tools for your specific needs — never locking you into a single vendor.' },
+              { q: 'Can I upgrade my package later?', a: 'Absolutely. Most clients start with the Starter Audit to understand their opportunities, then move to Implementation once they have a clear plan.' },
             ].map(({ q, a }) => (
-              <div key={q} className="bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-                <h3 className="font-display text-base font-semibold text-brand-navy mb-2">{q}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{a}</p>
+              <div key={q} className="card card--interactive" style={{ padding: 24 }}>
+                <h3 className="t-h4">{q}</h3>
+                <p className="t-small" style={{ marginTop: 8 }}>{a}</p>
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <p className="text-gray-500 text-sm mb-4">Still have questions?</p>
-            <Link
-              href="/about"
-              className="inline-block bg-brand-gradient text-gray-400 font-semibold rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity border-2 border-transparent hover:border-brand-purple hover:text-brand-purple transition-colors shadow-md"
-            >
-              Contact Us
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            <p className="t-small" style={{ marginBottom: 16 }}>Still have questions?</p>
+            <Link href="/about" className="btn btn-primary btn--lg">
+              Contact Us <Icon name="arrowRight" size={16} />
             </Link>
           </div>
         </div>

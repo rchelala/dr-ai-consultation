@@ -10,31 +10,38 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-navy text-brand-lavender py-14 mt-auto">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-10">
-          <div className="max-w-xs">
-            <p className="font-display text-2xl italic font-bold text-white mb-3">
-              D & R AI Consultation
+    <footer style={{ background: 'var(--surface-dark)', color: '#fff', padding: '64px 24px 32px', marginTop: 'auto' }}>
+      <div className="container">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 48, flexWrap: 'wrap', marginBottom: 48 }}>
+          <div style={{ maxWidth: 320 }}>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, fontStyle: 'italic', color: '#fff', marginBottom: 12 }}>
+              D &amp; R AI Consultation
             </p>
-            <p className="text-sm text-brand-lavender/50 leading-relaxed">
+            <p className="t-small" style={{ color: 'rgba(250,247,242,0.55)' }}>
               Built to make AI accessible for everyone — no tech background needed.
             </p>
           </div>
-          <nav className="flex flex-wrap gap-x-8 gap-y-3">
+          <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 36px' }}>
             {links.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className="text-sm text-brand-lavender/50 hover:text-brand-lavender transition-colors"
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 14,
+                  color: 'rgba(250,247,242,0.55)',
+                  textDecoration: 'none',
+                  transition: 'color var(--dur-fast) var(--ease-out)',
+                }}
+                className="footer-link"
               >
                 {label}
               </Link>
             ))}
           </nav>
         </div>
-        <div className="border-t border-white/10 pt-6 text-xs text-brand-lavender/30 text-center">
-          © {new Date().getFullYear()} D & R AI Consultation. All rights reserved.
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24, textAlign: 'center', fontSize: 12, color: 'rgba(250,247,242,0.35)' }}>
+          © {new Date().getFullYear()} D &amp; R AI Consultation. All rights reserved.
         </div>
       </div>
     </footer>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import CardHand from '@/components/CardHand'
 import type { HandCard } from '@/components/CardHand'
 import SmallBusinessRadar from '@/components/SmallBusinessRadar'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'What is AI & How it Works | D & R AI Consultation',
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 const whatCards: HandCard[] = [
   {
-    badge: '🤔',
+    badge: '💡',
     heading: 'So... what actually is AI?',
     body: `AI stands for Artificial Intelligence. But don't let that word scare you.
 
@@ -92,76 +93,56 @@ This back-and-forth is where AI really shines — you can refine and improve the
   },
 ]
 
-
 export default function WhatIsAIPage() {
   return (
-    <div className="relative" style={{ background: 'linear-gradient(160deg, rgba(72,185,187,0.18) 0%, #faf7f2 40%, rgba(255,179,107,0.15) 100%)' }}>
-      {/* Blobs clipped in their own layer so they don't affect child scroll containers */}
+    <div className="relative" style={{ background: 'var(--grad-wash)', overflow: 'hidden' }}>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-[460px] h-[460px] rounded-full blur-3xl" style={{ background: 'rgba(72,185,187,0.28)' }} />
-        <div className="absolute top-1/2 -left-32 w-[400px] h-[400px] rounded-full blur-3xl" style={{ background: 'rgba(255,179,107,0.22)' }} />
-        <div className="absolute -bottom-24 right-1/3 w-[340px] h-[340px] rounded-full blur-3xl" style={{ background: 'rgba(140,197,184,0.2)' }} />
+        <div className="blob blob-teal" style={{ width: 460, height: 460, top: -120, right: -120 }} />
+        <div className="blob blob-peach" style={{ width: 400, height: 400, top: '40%', left: -160 }} />
       </div>
 
-      <div className="relative max-w-3xl mx-auto px-4 py-12">
+      <div className="relative container--narrow" style={{ padding: '80px 24px 64px' }}>
 
-        {/* ── What is AI ── */}
-        <div className="text-center mb-10 animate-fade-up">
-          <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
-            The Basics
-          </p>
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-            What is AI?
-          </h1>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto">
-            A plain-English guide for anyone who&apos;s curious but not sure where to start.
-          </p>
+        {/* Header */}
+        <div className="section-header animate-fade-up">
+          <p className="t-eyebrow">The Basics</p>
+          <h1 className="t-h1">What is AI?</h1>
+          <p className="t-lead" style={{ marginTop: 16 }}>A plain-English guide for anyone who&apos;s curious but not sure where to start.</p>
         </div>
 
-        <div className="mb-20 animate-fade-up" style={{ animationDelay: '100ms' }}>
+        {/* Card hand — keep existing animated component */}
+        <div className="animate-fade-up" style={{ animationDelay: '100ms', marginBottom: 80 }}>
           <CardHand cards={whatCards} hint="tap to explore" />
         </div>
 
-        {/* ── How it Works ── */}
-        <div className="text-center mb-10 animate-fade-up">
-          <p className="text-xs font-semibold text-brand-purple tracking-[0.2em] uppercase mb-3">
-            Under the Hood
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-            How AI Works
-          </h2>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto">
-            No technical jargon — just a clear picture of what&apos;s actually happening when you talk to AI.
-          </p>
+        {/* How it Works */}
+        <div className="section-header animate-fade-up">
+          <p className="t-eyebrow">Under the Hood</p>
+          <h2 className="t-h2">How AI Works</h2>
+          <p className="t-lead" style={{ marginTop: 16 }}>No technical jargon — just a clear picture of what&apos;s actually happening when you talk to AI.</p>
         </div>
 
-        <div className="mb-16 animate-fade-up" style={{ animationDelay: '100ms' }}>
+        <div className="animate-fade-up" style={{ animationDelay: '100ms', marginBottom: 64 }}>
           <CardHand cards={stepCards} hint="tap to see the steps" />
         </div>
 
-        {/* ── Small business use cases — Radar ── */}
-        <div className="mb-12">
-          <h2 className="font-display text-2xl font-bold text-brand-navy text-center mb-2">
-            How small businesses use AI
-          </h2>
-          <p className="text-gray-500 text-center text-sm mb-8">
-            Real things real business owners do with AI every day.
-          </p>
-
+        {/* Small business use cases */}
+        <div style={{ marginBottom: 48 }}>
+          <div className="section-header">
+            <h2 className="t-h2">How small businesses use AI</h2>
+            <p className="t-body" style={{ marginTop: 12 }}>Real things real business owners do with AI every day.</p>
+          </div>
           <SmallBusinessRadar />
         </div>
 
-        {/* CTA */}
-        <div className="bg-brand-gradient rounded-xl p-8 text-gray-400 text-center">
-          <h2 className="font-display text-xl font-bold mb-2">See it for yourself</h2>
-          <p className="opacity-90 mb-5 text-sm">
+        {/* CTA band */}
+        <div className="cta-band">
+          <h2 className="t-h3" style={{ color: '#fff' }}>See it for yourself</h2>
+          <p className="t-small" style={{ color: 'rgba(255,255,255,0.85)', marginTop: 8, marginBottom: 20 }}>
             The best way to understand AI is to try it. Pick a guided prompt and send your first message.
           </p>
-          <Link
-            href="/try-ai"
-            className="inline-block bg-white text-brand-purple font-semibold rounded-full px-8 py-2.5 hover:opacity-90 transition-opacity text-sm"
-          >
-            Try AI Now →
+          <Link href="/try-ai" className="btn btn-on-dark">
+            Try AI Now <Icon name="arrowRight" size={16} />
           </Link>
         </div>
 

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import Icon from '@/components/Icon'
 
 interface Question {
   id: string
@@ -75,206 +76,136 @@ interface Result {
 
 function getResult(score: number, answers: Record<string, number>): Result {
   const recs: string[] = []
-
-  if (answers['after-hours'] >= 1)
-    recs.push('Set up an AI chat widget to capture and respond to leads after hours')
-  if (answers['repetitive-tasks'] >= 1)
-    recs.push('Automate your most time-consuming tasks with AI workflows')
-  if (answers['social-media'] >= 1)
-    recs.push('Use AI to draft and schedule social media content in batches')
-  if (answers['scheduling'] >= 1)
-    recs.push('Replace phone scheduling with an AI-powered booking system')
-  if (answers['challenge'] >= 1)
-    recs.push('Build an AI-assisted lead follow-up sequence to convert more inquiries')
-
+  if (answers['after-hours'] >= 1) recs.push('Set up an AI chat widget to capture and respond to leads after hours')
+  if (answers['repetitive-tasks'] >= 1) recs.push('Automate your most time-consuming tasks with AI workflows')
+  if (answers['social-media'] >= 1) recs.push('Use AI to draft and schedule social media content in batches')
+  if (answers['scheduling'] >= 1) recs.push('Replace phone scheduling with an AI-powered booking system')
+  if (answers['challenge'] >= 1) recs.push('Build an AI-assisted lead follow-up sequence to convert more inquiries')
   const topRecs = recs.slice(0, 3)
 
-  if (score <= 4) {
-    return {
-      tier: 'AI Explorer',
-      tagline: "You're at the starting line — and that's perfectly fine. A few targeted automations could make a noticeable difference quickly.",
-      color: 'bg-brand-purple',
-      recommendations: topRecs.length > 0 ? topRecs : [
-        'Start with a simple AI chatbot on your website',
-        'Use AI writing tools for emails and social content',
-        'Explore automated appointment reminders',
-      ],
-    }
+  if (score <= 4) return {
+    tier: 'AI Explorer',
+    tagline: "You're at the starting line — and that's perfectly fine. A few targeted automations could make a noticeable difference quickly.",
+    color: 'var(--brand-teal)',
+    recommendations: topRecs.length > 0 ? topRecs : ['Start with a simple AI chatbot on your website', 'Use AI writing tools for emails and social content', 'Explore automated appointment reminders'],
   }
-
-  if (score <= 8) {
-    return {
-      tier: 'AI Accelerator',
-      tagline: "You have clear use cases and real time to reclaim. A structured AI plan will give you a significant competitive edge.",
-      color: 'bg-brand-pink',
-      recommendations: topRecs.length > 0 ? topRecs : [
-        'Implement a full AI lead capture and follow-up system',
-        'Automate your most repetitive weekly tasks',
-        'Use AI data summaries to make faster business decisions',
-      ],
-    }
+  if (score <= 8) return {
+    tier: 'AI Accelerator',
+    tagline: "You have clear use cases and real time to reclaim. A structured AI plan will give you a significant competitive edge.",
+    color: 'var(--brand-peach-2)',
+    recommendations: topRecs.length > 0 ? topRecs : ['Implement a full AI lead capture and follow-up system', 'Automate your most repetitive weekly tasks', 'Use AI data summaries to make faster business decisions'],
   }
-
   return {
     tier: 'AI Power User',
     tagline: "You're ready for full AI integration. With your openness to technology and clear pain points, AI can transform your operations.",
-    color: 'bg-brand-navy',
-    recommendations: topRecs.length > 0 ? topRecs : [
-      'Build an end-to-end AI system from lead capture to follow-up',
-      'Integrate AI into your team workflows and reporting',
-      'Use AI analytics to track and optimize performance weekly',
-    ],
+    color: 'var(--brand-ink)',
+    recommendations: topRecs.length > 0 ? topRecs : ['Build an end-to-end AI system from lead capture to follow-up', 'Integrate AI into your team workflows and reporting', 'Use AI analytics to track and optimize performance weekly'],
   }
 }
 
 export default function QuizPage() {
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
-  const [selected, setSelected] = useState<number | null>(null) // index, not score
+  const [selected, setSelected] = useState<number | null>(null)
   const [showResult, setShowResult] = useState(false)
 
   const q = questions[currentQ]
   const totalScore = Object.values(answers).reduce((a, b) => a + b, 0)
   const result = getResult(totalScore, answers)
-  const progress = ((currentQ) / questions.length) * 100
-
-  function handleSelect(index: number) {
-    setSelected(index)
-  }
+  const progress = (currentQ / questions.length) * 100
 
   function handleNext() {
     if (selected === null) return
     const newAnswers = { ...answers, [q.id]: q.options[selected].score }
     setAnswers(newAnswers)
     setSelected(null)
-
-    if (currentQ + 1 >= questions.length) {
-      setShowResult(true)
-    } else {
-      setCurrentQ((c) => c + 1)
-    }
+    if (currentQ + 1 >= questions.length) setShowResult(true)
+    else setCurrentQ((c) => c + 1)
   }
 
   function handleRestart() {
-    setCurrentQ(0)
-    setAnswers({})
-    setSelected(null)
-    setShowResult(false)
+    setCurrentQ(0); setAnswers({}); setSelected(null); setShowResult(false)
   }
 
   if (showResult) {
     return (
-      <div className="min-h-screen bg-brand-lavender flex items-center justify-center px-6 py-20">
-        <div className="max-w-xl w-full animate-fade-up">
-          <div className="bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl shadow-xl overflow-hidden">
-            <div className={`${result.color} px-8 py-10 text-center`}>
-              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-2">Your Result</p>
-              <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">{result.tier}</h1>
-              <div className="text-white/40 text-sm font-medium">Score: {totalScore} / 12</div>
+      <section className="section section--cream" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ maxWidth: 560, width: '100%' }} className="animate-fade-up">
+          <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+            <div style={{ background: result.color, padding: '48px 32px', textAlign: 'center' }}>
+              <p className="t-eyebrow" style={{ color: 'rgba(255,255,255,0.65)' }}>Your Result</p>
+              <h1 className="t-h1" style={{ color: '#fff', marginTop: 12 }}>{result.tier}</h1>
+              <p className="t-small" style={{ color: 'rgba(255,255,255,0.7)', marginTop: 8 }}>Score: {totalScore} / 12</p>
             </div>
-
-            <div className="px-8 py-8">
-              <p className="text-gray-600 text-base leading-relaxed mb-8">{result.tagline}</p>
-
-              <h3 className="font-display text-lg font-semibold text-brand-navy mb-4">Your Top AI Opportunities</h3>
-              <ul className="space-y-3 mb-8">
+            <div style={{ padding: 32 }}>
+              <p className="t-body" style={{ marginBottom: 32 }}>{result.tagline}</p>
+              <h3 className="t-h4" style={{ marginBottom: 16 }}>Your Top AI Opportunities</h3>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 12, marginBottom: 32 }}>
                 {result.recommendations.map((rec) => (
-                  <li key={rec} className="flex items-start gap-3 text-sm text-gray-600">
-                    <span className="text-brand-purple mt-0.5 flex-shrink-0 font-bold">→</span>
-                    <span>{rec}</span>
+                  <li key={rec} style={{ display: 'flex', gap: 10 }}>
+                    <Icon name="arrowRight" size={18} style={{ color: 'var(--brand-teal)', flexShrink: 0, marginTop: 2 }} />
+                    <span className="t-small" style={{ color: 'var(--ink-80)' }}>{rec}</span>
                   </li>
                 ))}
               </ul>
-
-              <div className="space-y-3">
-                <Link
-                  href="/about"
-                  className="block text-center bg-brand-gradient text-green-600 font-semibold rounded-full py-4 hover:opacity-90 transition-opacity shadow-md"
-                >
+              <div style={{ display: 'grid', gap: 10 }}>
+                <Link href="/about" className="btn btn-primary btn--lg" style={{ width: '100%', display: 'flex' }}>
                   Book a Free AI Strategy Call
                 </Link>
-                <Link
-                  href="/services"
-                  className="block text-center border-2 border-brand-navy/20 text-brand-navy font-semibold rounded-full py-4 hover:border-brand-purple hover:text-brand-purple transition-colors"
-                >
+                <Link href="/services" className="btn btn-secondary btn--lg" style={{ width: '100%', display: 'flex' }}>
                   See Our Packages
                 </Link>
-                <button
-                  onClick={handleRestart}
-                  className="block w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors py-2"
-                >
+                <button onClick={handleRestart} className="btn" style={{ color: 'var(--ink-40)', background: 'transparent', width: '100%' }}>
                   Retake the quiz
                 </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     )
   }
 
   return (
-    <div className="min-h-screen bg-brand-lavender flex items-center justify-center px-6 py-20">
-      <div className="max-w-xl w-full">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <p className="text-xs font-semibold text-brand-purple/50 tracking-[0.2em] uppercase mb-2">
-            Free Assessment
-          </p>
-          <h1 className="font-display text-3xl font-bold text-brand-navy">
-            AI Readiness Quiz
-          </h1>
-          <p className="text-gray-500 text-sm mt-2">2 minutes · 6 questions · Free personalized plan</p>
+    <section className="section section--cream" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ maxWidth: 560, width: '100%' }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <p className="t-eyebrow t-eyebrow--muted">Free Assessment</p>
+          <h1 className="t-h1" style={{ marginTop: 12 }}>AI Readiness Quiz</h1>
+          <p className="t-small" style={{ marginTop: 8 }}>2 minutes · 6 questions · Free personalized plan</p>
         </div>
 
         {/* Progress bar */}
-        <div className="w-full bg-brand-navy/10 rounded-full h-1.5 mb-8">
-          <div
-            className="bg-brand-gradient h-1.5 rounded-full transition-all duration-500"
-            style={{ width: `${progress}%` }}
-          />
+        <div style={{ height: 6, background: 'rgba(28,35,48,0.08)', borderRadius: 3, overflow: 'hidden', marginBottom: 32 }}>
+          <div style={{ height: '100%', background: 'var(--grad-brand)', width: `${progress}%`, transition: 'width 0.5s var(--ease-out)' }} />
         </div>
 
-        {/* Question card */}
-        <div className="bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl shadow-md p-8 animate-fade-up">
-          <div className="flex items-center justify-between mb-6">
-            <span className="text-xs font-semibold text-brand-purple/50 uppercase tracking-widest">
-              Question {currentQ + 1} of {questions.length}
-            </span>
-          </div>
-
-          <h2 className="font-display text-xl font-semibold text-brand-navy mb-6 leading-snug">
-            {q.question}
-          </h2>
-
-          <div className="space-y-3 mb-8">
+        <div className="card animate-fade-up">
+          <p className="t-eyebrow t-eyebrow--muted" style={{ marginBottom: 20 }}>Question {currentQ + 1} of {questions.length}</p>
+          <h2 className="t-h3" style={{ marginBottom: 24 }}>{q.question}</h2>
+          <div style={{ display: 'grid', gap: 10, marginBottom: 24 }}>
             {q.options.map(({ label }, index) => (
               <button
                 key={label}
-                onClick={() => handleSelect(index)}
-                className={`w-full text-left px-5 py-4 rounded-xl border-2 text-sm font-medium transition-all ${
-                  selected === index
-                    ? 'border-brand-purple bg-brand-purple/5 text-brand-navy'
-                    : 'border-brand-navy/10 bg-white/50 text-gray-600 hover:border-brand-purple/40 hover:bg-white/80'
-                }`}
+                onClick={() => setSelected(index)}
+                className={`quiz-option ${selected === index ? 'is-on' : ''}`}
               >
-                <span className={`inline-block w-5 h-5 rounded-full border-2 mr-3 align-middle transition-all flex-shrink-0 ${
-                  selected === index ? 'border-brand-purple bg-brand-purple' : 'border-gray-300'
-                }`} />
-                {label}
+                <span className={`quiz-radio ${selected === index ? 'is-on' : ''}`} />
+                <span className="t-small" style={{ color: 'var(--ink-80)', fontWeight: 500 }}>{label}</span>
               </button>
             ))}
           </div>
-
           <button
             onClick={handleNext}
             disabled={selected === null}
-            className="w-full bg-brand-gradient text-gray-400 font-semibold rounded-full py-4 hover:opacity-90 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
+            className="btn btn-primary btn--lg"
+            style={{ width: '100%', display: 'flex', opacity: selected === null ? 0.35 : 1 }}
           >
-            {currentQ + 1 === questions.length ? 'See My Results' : 'Next Question →'}
+            {currentQ + 1 === questions.length ? 'See My Results' : 'Next Question'}
+            <Icon name="arrowRight" size={16} />
           </button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
