@@ -8,8 +8,11 @@ const links = [
   { href: '/what-is-ai', label: 'What is AI?' },
   { href: '/how-it-works', label: 'How it Works' },
   { href: '/try-ai', label: 'Try AI' },
+  { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
 ]
+
+const quizLink = { href: '/quiz', label: 'Take the Quiz' }
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -26,7 +29,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex gap-8 text-sm">
+        <div className="hidden md:flex gap-8 text-sm items-center">
           {links.map(({ href, label }) => (
             <Link
               key={href}
@@ -40,6 +43,12 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <Link
+            href={quizLink.href}
+            className="bg-brand-pink text-white text-sm font-medium px-4 py-1.5 rounded-full hover:opacity-90 transition-opacity"
+          >
+            {quizLink.label}
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -79,6 +88,13 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <Link
+            href={quizLink.href}
+            className="text-sm font-medium text-brand-pink"
+            onClick={() => setMenuOpen(false)}
+          >
+            {quizLink.label}
+          </Link>
         </div>
       </div>
     </nav>

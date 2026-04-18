@@ -15,10 +15,12 @@ describe('Navbar', () => {
 
   it('renders all nav links', () => {
     render(<Navbar />)
-    expect(screen.getByText('What is AI?')).toBeInTheDocument()
-    expect(screen.getByText('How it Works')).toBeInTheDocument()
-    expect(screen.getByText('Try AI')).toBeInTheDocument()
-    expect(screen.getByText('About')).toBeInTheDocument()
+    expect(screen.getAllByText('What is AI?').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('How it Works').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Try AI').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Services').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('About').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Take the Quiz').length).toBeGreaterThan(0)
   })
 
   it('toggles mobile menu on hamburger click', async () => {
